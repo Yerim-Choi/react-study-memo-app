@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import App from 'containers/App';
+import store from 'store';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode store={store}>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
