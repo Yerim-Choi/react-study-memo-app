@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from 'components/Header';
 import Layout from 'components/Layout';
+import WriteMemo from './WriteMemo';
 
 class App extends Component {
     render() {
@@ -8,7 +9,7 @@ class App extends Component {
             <div>
                 <Layout>
                     <Header />
-                    <Layout.Main>hello</Layout.Main>
+                    <Layout.Main><WriteMemo /></Layout.Main>
                 </Layout>
             </div>
         );
