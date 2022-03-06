@@ -25,14 +25,21 @@ class WriteMemo extends Component {
         }
     }
 
+    handleChange = (e) => {
+        const { UIActions } = this.props;
+        const { name, value } = e.target;
+
+        UIActions.changeInput({ name, value });
+    }
+
     render() {
-        const { handleFocus } = this;
+        const { handleFocus, handleChange } = this;
         const { focused, title, body } = this.props;
 
         return (
             focused ? /* 포커스 된 상태 */ (
                 <WhiteBox>
-                    <InputSet />
+                    <InputSet onChange={handleChange} title={title} body={body} />
                     <SaveButton />
                 </WhiteBox>
             ) : /* 포커스 풀린 상태 */  (
