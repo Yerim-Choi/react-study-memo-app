@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import enhanceWithClickOutside from 'react-click-outside';
 import * as uiActions from 'modules/ui';
+import * as memoActions from 'modules/memo';
+
 
 class WriteMemo extends Component {
     handleFocus = () => {
@@ -32,15 +34,30 @@ class WriteMemo extends Component {
         UIActions.changeInput({ name, value });
     }
 
+    handleCreate = async () => {
+        const { title, body, MemoActions, UIActions } = this.props;
+        try {
+            // 메모 생성 API 호출
+            await MemoActions.createMemo({
+                title, body
+            });
+
+            UIActions.resetInput();
+            // TODO: 최근 메모 불러오기
+        } catch (e) {
+            console.log(e); // 에러 발생
+        }
+    }
+
     render() {
-        const { handleFocus, handleChange } = this;
+        const { handleFocus, handleChange, handleCreate } = this;
         const { focused, title, body } = this.props;
 
         return (
             focused ? /* 포커스 된 상태 */ (
                 <WhiteBox>
                     <InputSet onChange={handleChange} title={title} body={body} />
-                    <SaveButton />
+                    <SaveButton onClick={handleCreate} />
                 </WhiteBox>
             ) : /* 포커스 풀린 상태 */  (
                 <WhiteBox onClick={handleFocus}>
@@ -58,6 +75,7 @@ export default connect(
         body: state.ui.getIn(['write', 'body'])
     }),
     (dispatch) => ({
-        UIActions: bindActionCreators(uiActions, dispatch)
+        UIActions: bindActionCreators(uiActions, dispatch),
+        MemoActions: bindActionCreators(memoActions, dispatch)
     })
 )(enhanceWithClickOutside(WriteMemo));
