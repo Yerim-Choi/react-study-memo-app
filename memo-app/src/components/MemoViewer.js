@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import oc from 'open-color';
 import PropTypes from 'prop-types';
 import { media } from 'lib/style-utils';
-
 import TrashIcon from 'react-icons/lib/io/trash-b';
 
 
