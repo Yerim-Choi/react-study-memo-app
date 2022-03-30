@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import oc from 'open-color';
 import PropTypes from 'prop-types';
 import { media } from 'lib/style-utils';
-import TrashIcon from 'react-icons/lib/io/trash-b';
+// import FaTrash from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
+
 
 
 // 화면을 불투명하게 해줍니다.
@@ -67,7 +69,7 @@ const MemoViewer = ({ visible, title, body, onChange, onUpdate, onDelete, onClos
                 <InputSet title={title} body={body} onChange={onChange} />
                 <SaveButton onClick={onUpdate} />
                 <TrashButton onClick={onDelete}>
-                    <TrashIcon />
+                    <FaTrash />
                 </TrashButton>
             </Viewer>
         </div>

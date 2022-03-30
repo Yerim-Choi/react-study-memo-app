@@ -13,7 +13,11 @@ import MemoViewerContainer from './MemoViewerContainer';
 
 class App extends Component {
 
+
+
     async componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+
         const { MemoActions } = this.props;
         // 초기 메모 로딩
         try {
@@ -23,6 +27,15 @@ class App extends Component {
             console.log(e);
         }
     }
+
+    handleScroll = (e) => {
+        const { clientHeight } = document.body;
+        const { innerHeight } = window;
+
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        console.log(clientHeight, innerHeight, scrollTop);
+    }
+
 
     getRecentMemo = () => {
         const { MemoActions, cursor } = this.props;
