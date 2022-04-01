@@ -33,9 +33,11 @@ class App extends Component {
         const { innerHeight } = window;
 
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        console.log(clientHeight, innerHeight, scrollTop);
-    }
 
+        if (clientHeight - innerHeight - scrollTop < 100) {
+            console.log('페이지 끝에 가까워졌군요.');
+        }
+    }
 
     getRecentMemo = () => {
         const { MemoActions, cursor } = this.props;
