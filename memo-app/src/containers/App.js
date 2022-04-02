@@ -65,8 +65,9 @@ class App extends Component {
 
 export default connect(
     (state) => ({
-        cursor: state.memo.getIn(['data', 0, 'id'])
-    }), // 현재는 비어있는 객체를 반환합니다
+        cursor: state.memo.getIn(['data', 0, 'id']),
+        endCursor: state.memo.getIn(['data', state.memo.get('data').size - 1, 'id'])
+    }),
     (dispatch) => ({
         MemoActions: bindActionCreators(memoActions, dispatch)
     })
