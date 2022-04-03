@@ -12,8 +12,7 @@ import MemoViewerContainer from './MemoViewerContainer';
 
 
 class App extends Component {
-
-
+    endCursor = 0
 
     async componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
@@ -35,7 +34,13 @@ class App extends Component {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
         if (clientHeight - innerHeight - scrollTop < 100) {
-            console.log('페이지 끝에 가까워졌군요.');
+            const { endCursor, MemoActions } = this.props;
+
+            // endCursor 가 없거나, 이전에 했던 요청과 동일하다면 여기서 멈춘다.
+            if (!endCursor || this.endCursor === endCursor) return;
+            this.endCursor = endCursor;
+
+            MemoActions.getPreviousMemo(endCursor);
         }
     }
 
