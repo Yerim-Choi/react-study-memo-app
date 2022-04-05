@@ -71,7 +71,8 @@ class App extends Component {
 export default connect(
     (state) => ({
         cursor: state.memo.getIn(['data', 0, 'id']),
-        endCursor: state.memo.getIn(['data', state.memo.get('data').size - 1, 'id'])
+        endCursor: state.memo.getIn(['data', state.memo.get('data').size - 1, 'id']),
+        pending: state.pender.pending
     }),
     (dispatch) => ({
         MemoActions: bindActionCreators(memoActions, dispatch)
