@@ -8,6 +8,7 @@ import * as memoActions from 'modules/memo';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import MemoViewerContainer from './MemoViewerContainer';
+import Spinner from 'components/Spinner';
 
 
 
@@ -55,12 +56,15 @@ class App extends Component {
     }
 
     render() {
+        const { pending } = this.props;
+
         return (
             <Layout>
                 <Header />
                 <Layout.Main>
                     <WriteMemo />
                     <MemoListContainer />
+                    <Spinner visible={pending['memo/GET_INITIAL_MEMO'] || pending['memo/GET_PREVIOUS_MEMO']} />
                 </Layout.Main>
                 <MemoViewerContainer />
             </Layout>
